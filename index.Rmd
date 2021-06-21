@@ -43,9 +43,8 @@ doctor Crump. You can find his github on the following [here](https://github.com
 </div>
 <div class="col-sm-6">
 
-### [Crump Lab: Human Cognition and Performance](https://crumplab.github.io)
 
 <a href = "https://crumplab.github.io">
-![](images/logo.png)
+![](images/dancing_pig.jpg)
 </a>
 </div>
