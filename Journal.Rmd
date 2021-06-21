@@ -14,4 +14,91 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
+#First Steps
+We start by loading libraries
+```{r}
+library(tidyverse)
+library(sf)
+library(ggspatial)
+library(readxl)
+library(writexl)
+library(sf)
+library(viridis)
+```
 
+Next, we import our datasets. We start by loading the census data for 1996 and 2019.
+
+```{r}
+padron_1996 <- read_excel("data/pobmun96.xlsx", 
+                          col_types = c("text", "text", "text", 
+                                        "numeric", "numeric", "numeric"))
+```
+
+```{r}
+padron_2019 <- read_excel("data/pobmun19.xlsx", 
+                          col_types = c("text", "text", "text", 
+                                        "text", "numeric", "numeric","numeric"))
+```
+
+Lastly we import our geospatial data.
+```{r}
+municipios <- st_read("data/Municipios_IGN.shp")
+```
+
+#Cleaning our data.
+
+
+```{r}
+padron_1996_l <- rename(padron_1996, 
+                        municipio = NOMBRE,
+                        poblacion_total_96= TOTAL, 
+                        varones_96 = VARONES, 
+                        mujeres_96 = MUJERES)
+```
+
+
+
+
+```{r}
+cod_ine_1996<- padron_1996_l %>%
+  unite("cod_ine", CPRO, CMUN, sep="")
+```
+
+```{r}
+padron_2019_l <- rename(padron_2019,
+                        provincia = PROVINCIA,
+                        municipio = NOMBRE,
+                        poblacion_total_19= POB19, 
+                        varones_19 = HOMBRES, 
+                        mujeres_19 = MUJERES)
+
+```
+
+```{r}
+cod_ine_2019<- padron_2019_l %>%
+  unite("cod_ine", CPRO, CMUN, sep="")
+```
+
+#Unifying demographic datasets
+
+pob_mun_96_19 <- padron_1996_1 %>%
+  left_
+```{r}
+pob_mun_96_19 <- cod_ine_1996 %>%
+  left_join(cod_ine_2019, "cod_ine")
+
+```
+
+
+#Tidying up our data 1996-2019
+
+
+```{r}
+pob_mun_96_19 <- pob_mun_96_19 %>% select(-municipio.x)
+```
+
+
+```{r}
+pob_mun_96_19 <- rename(pob_mun_96_19,
+                        municipios = municipio.y)
+```
