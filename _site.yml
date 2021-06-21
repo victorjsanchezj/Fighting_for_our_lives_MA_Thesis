@@ -1,11 +1,11 @@
-name: "MyLabJournal"
+name: "Fighting for our lives: Accompanying website"
 navbar:
-  title: "MyLabJournal"
+  title: "Fighting for our lives: Accompanying website"
   left:
     - text: "Home"
       href: index.html
-    - text: "Journal"
+    - text: "Demographic data"
       href: Journal.html
-    - text: "Links"
+    - text: "Sources and Resources"
       href: Links.html
 output_dir: "docs"
