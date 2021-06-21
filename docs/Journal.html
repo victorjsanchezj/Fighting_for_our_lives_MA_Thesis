@@ -382,7 +382,53 @@ div.tocify {
 </div>
 
 
-
+<p>#First Steps We start by loading libraries</p>
+<pre class="r"><code>library(tidyverse)
+library(sf)
+library(ggspatial)
+library(readxl)
+library(writexl)
+library(sf)
+library(viridis)</code></pre>
+<p>Next, we import our datasets. We start by loading the census data for 1996 and 2019.</p>
+<pre class="r"><code>padron_1996 &lt;- read_excel(&quot;data/pobmun96.xlsx&quot;, 
+                          col_types = c(&quot;text&quot;, &quot;text&quot;, &quot;text&quot;, 
+                                        &quot;numeric&quot;, &quot;numeric&quot;, &quot;numeric&quot;))</code></pre>
+<pre class="r"><code>padron_2019 &lt;- read_excel(&quot;data/pobmun19.xlsx&quot;, 
+                          col_types = c(&quot;text&quot;, &quot;text&quot;, &quot;text&quot;, 
+                                        &quot;text&quot;, &quot;numeric&quot;, &quot;numeric&quot;,&quot;numeric&quot;))</code></pre>
+<p>Lastly we import our geospatial data.</p>
+<pre class="r"><code>municipios &lt;- st_read(&quot;data/Municipios_IGN.shp&quot;)</code></pre>
+<pre><code>## Reading layer `Municipios_IGN&#39; from data source `C:\Victor\KCL\Thesis\R\Website\Fighting_for_our_lives_MA_Thesis\data\Municipios_IGN.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 8205 features and 10 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -18.16118 ymin: 27.63772 xmax: 4.327785 ymax: 43.79238
+## Geodetic CRS:  WGS 84</code></pre>
+<p>#Cleaning our data.</p>
+<pre class="r"><code>padron_1996_l &lt;- rename(padron_1996, 
+                        municipio = NOMBRE,
+                        poblacion_total_96= TOTAL, 
+                        varones_96 = VARONES, 
+                        mujeres_96 = MUJERES)</code></pre>
+<pre class="r"><code>cod_ine_1996&lt;- padron_1996_l %&gt;%
+  unite(&quot;cod_ine&quot;, CPRO, CMUN, sep=&quot;&quot;)</code></pre>
+<pre class="r"><code>padron_2019_l &lt;- rename(padron_2019,
+                        provincia = PROVINCIA,
+                        municipio = NOMBRE,
+                        poblacion_total_19= POB19, 
+                        varones_19 = HOMBRES, 
+                        mujeres_19 = MUJERES)</code></pre>
+<pre class="r"><code>cod_ine_2019&lt;- padron_2019_l %&gt;%
+  unite(&quot;cod_ine&quot;, CPRO, CMUN, sep=&quot;&quot;)</code></pre>
+<p>#Unifying demographic datasets</p>
+<p>pob_mun_96_19 &lt;- padron_1996_1 %&gt;% left_</p>
+<pre class="r"><code>pob_mun_96_19 &lt;- cod_ine_1996 %&gt;%
+  left_join(cod_ine_2019, &quot;cod_ine&quot;)</code></pre>
+<p>#Tidying up our data 1996-2019</p>
+<pre class="r"><code>pob_mun_96_19 &lt;- pob_mun_96_19 %&gt;% select(-municipio.x)</code></pre>
+<pre class="r"><code>pob_mun_96_19 &lt;- rename(pob_mun_96_19,
+                        municipios = municipio.y)</code></pre>
 
 
 
