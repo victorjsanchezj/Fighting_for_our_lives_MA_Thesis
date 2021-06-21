@@ -38,14 +38,12 @@ understandable to as many people as possible.
 
 At this point, this website is based on the code generously shared by doctor Matthew Crump. At a later 
 stage in the project, I plan to create my own code for this website. But it would be unfair not to credit
-doctor Crump. You can find his github on the following [here](https://github.com/CrumpLab).
+doctor Crump. You can find his github [here](https://github.com/CrumpLab).
 
 
-</div>
-<div class="col-sm-6">
 
 
-<a href = "https://crumplab.github.io">
-![](images/dancing_pig.jpg)
-</a>
-</div>
+![](images/dancing_pig_1.jpg)
+
+Member of *Pueblos Vivos Cuenca*, dressed as a pig and dancing in the *Wine Harvest of Shame* organized
+in Quintanar del Rey. 19/06/2021
