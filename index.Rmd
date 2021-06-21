@@ -34,6 +34,11 @@ lines of code (introduced by a "#"). Sometimes, I decided to choose verbose code
 understood my humans over "elegant" code. This decision was made in the spirit of making my research
 understandable to as many people as possible.
 
+# * Acknowledgement *
+At this point, this website is based on the code generously shared by doctor Matthew Crump. At a later 
+stage in the project, I plan to create my own code for this website. But it would be unfair not to credit
+doctor Crump. You can find his github on the following [here](https://github.com/CrumpLab).
+
 
 </div>
 <div class="col-sm-6">
