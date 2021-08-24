@@ -174,7 +174,7 @@ CLM_provinces_df %>%
     axis.title = element_blank())
 ```
 
-#2.Creating maps with new geospatial information.
+##2.Creating maps with new geospatial information.
 
 So far we have produced maps with existing information. Now let's produce map
 to locate the existing macrogranjas in CLM and the projected ones.
@@ -232,4 +232,39 @@ CLM_provinces %>%
 
 Here is our map!
 
+#Map of projected macrogranjas.
 
+Now, let's create our last map. We will follow the same steps that we did above.
+I obtained the information from NEVIA in early August 2021. By the time
+you are reading this, there is a good chance the data is outdated.
+
+```{r}
+projected_macrogranjas <- read_excel("data/projected_macrogranjas_clean.xlsx")
+```
+
+Just as before, our dataset lacks geospatial coordinates. Fear not, OpenStreetMaps
+will rescue us once again.
+
+```{r}
+projected_macrogranjas_geocoded <- projected_macrogranjas %>%
+  geocode("Municipality", method = 'osm', lat = latitude , long = longitude, min_time=2)
+```
+
+The last step left to do is to plot our information into a 4th map.
+
+```{r}
+CLM_provinces %>%
+  ggplot(aes("gray33"))+
+  geom_sf(color = "black", size = 0.1) +
+  geom_point(data=projected_macrogranjas_geocoded, colour="purple3", aes(x=longitude, y=latitude, alpha=0.01)) +
+  annotation_scale(location = "br", width_hint = 0.5) +
+  annotation_north_arrow(location = "br", which_north = "true", 
+                         pad_x = unit(0.75, "in"), pad_y = unit(0.5, "in"),
+                         style = north_arrow_fancy_orienteering) +
+  coord_sf(xlim = c(-5.5, -0.5), ylim = c(38, 41.30)) +
+  guides(colour = FALSE, alpha = FALSE)+
+  xlab("Longitude")+
+  ylab("Latitude")
+```
+
+And here it is! We are done with our cartographic production!
