@@ -4,8 +4,8 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Demographic data"
-      href: Journal.html
+    - text: "Producing basic cartographies"
+      href: Cartography.html
     - text: "Sources and Resources"
       href: Links.html
 output_dir: "docs"
