@@ -174,7 +174,7 @@ CLM_provinces_df %>%
     axis.title = element_blank())
 ```
 
-##2.Creating maps with new geospatial information.
+# 2 Creating maps with new geospatial information.
 
 So far we have produced maps with existing information. Now let's produce map
 to locate the existing macrogranjas in CLM and the projected ones.

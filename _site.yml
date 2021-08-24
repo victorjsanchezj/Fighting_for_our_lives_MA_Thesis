@@ -6,6 +6,6 @@ navbar:
       href: index.html
     - text: "Producing basic cartographies"
       href: Cartography.html
-    - text: "Sources and Resources"
+    - text: "Quantitative Analysis"
       href: Links.html
 output_dir: "docs"
