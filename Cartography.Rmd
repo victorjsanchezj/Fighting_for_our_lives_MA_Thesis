@@ -14,7 +14,6 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-## 1) First Steps
 We start by loading libraries
 ```{r}
 library(tidyverse)
@@ -26,7 +25,7 @@ library(sf)
 library(tidygeocoder)
 ```
 
-# 1.a) Creating maps with already existing geospatial information.
+# 1 Creating maps with already existing geospatial information.
 
 The first data sets we will load are shapefiles. Shapefiles are geospatial datasets that contains
 the necessary information to produce maps. 
@@ -173,4 +172,7 @@ CLM_provinces_df %>%
     panel.grid = element_blank(),
     axis.title = element_blank())
 ```
+
+#2.Creating maps with new geospatial information.
+
 

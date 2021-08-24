@@ -342,8 +342,8 @@ div.tocify {
 </div>
 
 
-<div id="first-steps" class="section level2">
-<h2>1) First Steps</h2>
+<div id="cartographic-data" class="section level2">
+<h2>1) Cartographic data</h2>
 <p>We start by loading libraries</p>
 <pre class="r"><code>library(tidyverse)
 library(sf)
@@ -353,8 +353,8 @@ library(writexl)
 library(sf)
 library(tidygeocoder)</code></pre>
 </div>
-<div id="a-creating-maps-with-already-existing-geospatial-information." class="section level1">
-<h1>1.a) Creating maps with already existing geospatial information.</h1>
+<div id="creating-maps-with-already-existing-geospatial-information." class="section level1">
+<h1>1 Creating maps with already existing geospatial information.</h1>
 <p>The first data sets we will load are shapefiles. Shapefiles are geospatial datasets that contains the necessary information to produce maps.</p>
 <p>The first dataset we will load is from the Spanish Institue of Geography. It contains data on the legal limits of Spain’s autonomous communities.I obtained this data set form the open data repository of CLM’s government. We will load it and use it as our basic cartography of CLM’s provinces.</p>
 <p>#Data for the autonomous communities.</p>
@@ -458,6 +458,7 @@ names(CCAA_2)</code></pre>
     panel.grid = element_blank(),
     axis.title = element_blank())</code></pre>
 <p><img src="Cartography_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>#2.Creating maps with new geospatial information.</p>
 </div>
 
 
