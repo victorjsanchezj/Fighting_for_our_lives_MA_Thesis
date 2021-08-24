@@ -130,6 +130,7 @@ ggplot()+
         axis.title = element_blank())
 
 ```
+
 We are done with out first map! Now, let's figure out where are CLM's provinces ;)
 
 #Data for the provinces within Spain.
@@ -174,5 +175,61 @@ CLM_provinces_df %>%
 ```
 
 #2.Creating maps with new geospatial information.
+
+So far we have produced maps with existing information. Now let's produce map
+to locate the existing macrogranjas in CLM and the projected ones.
+
+#Map of the existing macrogranjas.
+
+First of all, we will load an excel file containing the farms that in 2019
+had at least 2000 pigs.
+
+```{r}
+villages_macrogranjas <- read_excel("data/porcino +2000.xlsx")
+```
+
+
+Now, we will clean our data set. Since some of the municipalities' name include
+articles, we will get rid of them with the following line of code
+
+```{r}
+villages_macrogranjas_municipality_split <- villages_macrogranjas %>% 
+  separate(Municipality,c("MUNICIPIO","ARTICLE"),sep=",")
+```
+
+Note that the excel we are working with does not have coordinates, just the name
+of villages. We will use the package tidygeocoder to use data from OpenStreetMaps
+as to geocode our data automatically. There are other options to geocode municipalities
+automatically, GoogleMaps being one of them. However, since 2018 Google changed their
+terms of service and prevents users to connect to their API to produce and publish
+geospatial information. Hence, we are using OpenStreetMaps, an open-source project.
+Out of respect to the people at OpenStreetMaps we are setting a minimum time of 2
+seconds between each request (each search of each municipality) to prevent 
+overloading their service.
+It will take a while, so feel free to grab a cup of tea on the meantime.
+
+```{r}
+villages_geocoded <- villages_macrogranjas_municipality_split %>%
+  geocode("MUNICIPIO", method = 'osm', lat = latitude , long = longitude, min_time=2)
+```
+
+Now we just have to plot our data in a new map!
+
+```{r}
+CLM_provinces %>%
+  ggplot(aes("gray33"))+
+  geom_sf(color = "black", size = 0.1) +
+  geom_point(data=villages_geocoded, aes(x=longitude, y=latitude, size=Animals, colour="pink", alpha=0.01)) +
+  annotation_scale(location = "br", width_hint = 0.5) +
+  annotation_north_arrow(location = "br", which_north = "true", 
+                         pad_x = unit(0.75, "in"), pad_y = unit(0.5, "in"),
+                         style = north_arrow_fancy_orienteering) +
+  coord_sf(xlim = c(-5.5, -0.5), ylim = c(38, 41.30)) +
+  guides(colour = FALSE, alpha = FALSE)+
+  xlab("Longitude")+
+  ylab("Latitude")
+```
+
+Here is our map!
 
 
